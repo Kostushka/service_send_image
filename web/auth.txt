@@ -1,0 +1,1 @@
+{"AuthSource": "share-image", "Username": "user", "Password": "user123"}
