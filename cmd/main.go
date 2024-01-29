@@ -18,7 +18,7 @@ func main() {
 	// получить конфигурационные данные
 	conf, err := configParse()
 	if err != nil {
-		log.Fatal("cannot get config data: %v", err)
+		log.Fatalf("cannot get config data: %v", err)
 	}
 
 	log.Printf("Received command-line arguments: port %q; a directory for images %q; "+
@@ -121,8 +121,7 @@ func parseAuthfile(filename string) (*db.Auth, error) {
 
 	// id пользователя, запустившего процесс, и id владельца должны совпадать
 	if uidCurrent != int(uidFile) {
-		log.Printf("The user ID of the process does not match the ID of the owner of the file with the auth data")
-		return nil, err
+		return nil, fmt.Errorf("The user ID of the process does not match the ID of the owner of the file with the auth data")
 	}
 
 	// получить права доступа файла

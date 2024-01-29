@@ -19,10 +19,10 @@ import (
 
 const maxUploadSize = 32 << 20 // 32 MB
 const iconRequest = "/favicon.ico"
-const iconFile = "./web/ico.png"
-const errorHtml = "./web/error.html"
+const iconFile = "/var/lib/share-image/web/ico.png"
+const errorHtml = "/var/lib/share-image/web/error.html"
 const keyForm = "image"
-const linkHtml = "./web/link.html"
+const linkHtml = "/var/lib/share-image/web/link.html"
 
 type errorPage struct {
 	Number int
@@ -198,7 +198,7 @@ func (h *Web) Run(port string) error {
 	// подпрограмма с слушателем запросов
 	go func() {
 		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			log.Printf("HTTP server ListenAndServe: %v", err)
+			log.Fatalf("HTTP server ListenAndServe: %v", err)
 		}
 	}()
 
